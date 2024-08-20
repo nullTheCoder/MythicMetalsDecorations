@@ -1,4 +1,4 @@
-package nourl.mythicmetalsdecorations.client;
+package nourl.mythicmetalsdecorations.screen;
 
 import io.wispforest.owo.mixin.ui.SlotAccessor;
 import io.wispforest.owo.util.pond.OwoSlotExtension;
@@ -9,9 +9,7 @@ import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import nourl.mythicmetalsdecorations.MythicChestScreenHandler;
 import nourl.mythicmetalsdecorations.MythicMetalsDecorations;
-import nourl.mythicmetalsdecorations.utils.ChestScreenSize;
 import nourl.mythicmetalsdecorations.utils.RegHelper;
 
 public class MythicChestScreen extends HandledScreen<MythicChestScreenHandler> {

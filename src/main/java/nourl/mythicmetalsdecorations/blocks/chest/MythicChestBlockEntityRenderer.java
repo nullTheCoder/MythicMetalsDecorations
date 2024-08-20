@@ -25,7 +25,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.World;
 import nourl.mythicmetalsdecorations.blocks.MythicDecorationSet;
-import nourl.mythicmetalsdecorations.blocks.MythicDecorations;
+import nourl.mythicmetalsdecorations.MythicDecorations;
 
 import java.util.HashMap;
 import java.util.Map;

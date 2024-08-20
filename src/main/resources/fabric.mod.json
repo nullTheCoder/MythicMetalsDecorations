@@ -22,10 +22,10 @@
       "nourl.mythicmetalsdecorations.MythicMetalsDecorations"
     ],
     "rei_client": [
-      "nourl.mythicmetalsdecorations.client.MythicMetalsDecorationsREIPlugin"
+      "nourl.mythicmetalsdecorations.compat.MythicMetalsDecorationsREIPlugin"
     ],
     "emi": [
-      "nourl.mythicmetalsdecorations.client.MythicMetalsDecorationsEmiPlugin"
+      "nourl.mythicmetalsdecorations.compat.MythicMetalsDecorationsEmiPlugin"
     ]
   },
   "mixins": [

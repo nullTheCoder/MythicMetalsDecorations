@@ -29,7 +29,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
-import nourl.mythicmetalsdecorations.MythicChestScreenHandler;
+import nourl.mythicmetalsdecorations.screen.MythicChestScreenHandler;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.function.BiPredicate;

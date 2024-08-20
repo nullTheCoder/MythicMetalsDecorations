@@ -16,10 +16,10 @@ import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.Style;
 import net.minecraft.util.Formatting;
 import nourl.mythicmetals.abilities.Abilities;
-import nourl.mythicmetalsdecorations.blocks.MythicDecorations;
 import nourl.mythicmetalsdecorations.blocks.chest.MythicChests;
 import nourl.mythicmetalsdecorations.config.MythicDecorationsConfig;
 import nourl.mythicmetalsdecorations.item.MythicDecorationsItems;
+import nourl.mythicmetalsdecorations.screen.MythicChestScreenHandler;
 import nourl.mythicmetalsdecorations.utils.RegHelper;
 
 public class MythicMetalsDecorations implements ModInitializer {

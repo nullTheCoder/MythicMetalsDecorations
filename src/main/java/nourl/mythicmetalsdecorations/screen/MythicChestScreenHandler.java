@@ -1,4 +1,4 @@
-package nourl.mythicmetalsdecorations;
+package nourl.mythicmetalsdecorations.screen;
 
 import io.wispforest.owo.client.screens.ScreenUtils;
 import io.wispforest.owo.client.screens.SlotGenerator;
@@ -9,6 +9,7 @@ import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
+import nourl.mythicmetalsdecorations.MythicMetalsDecorations;
 
 public class MythicChestScreenHandler extends ScreenHandler {
 

@@ -1,4 +1,4 @@
-package nourl.mythicmetalsdecorations.blocks;
+package nourl.mythicmetalsdecorations;
 
 import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import nourl.mythicmetals.blocks.MythicBlocks;
-import nourl.mythicmetalsdecorations.MythicMetalsDecorations;
+import nourl.mythicmetalsdecorations.blocks.MythicDecorationSet;
 import nourl.mythicmetalsdecorations.item.MythicDecorationsArmorMaterials;
 import nourl.mythicmetalsdecorations.item.MythicDecorationsCrownMaterials;
 import nourl.mythicmetalsdecorations.utils.RegHelper;

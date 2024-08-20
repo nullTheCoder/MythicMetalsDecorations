@@ -15,11 +15,12 @@ import net.minecraft.util.Formatting;
 import nourl.mythicmetals.MythicMetals;
 import nourl.mythicmetalsdecorations.MythicMetalsDecorations;
 import nourl.mythicmetalsdecorations.blocks.MythicDecorationSet;
-import nourl.mythicmetalsdecorations.blocks.MythicDecorations;
+import nourl.mythicmetalsdecorations.MythicDecorations;
 import nourl.mythicmetalsdecorations.blocks.chest.ChestTextureLayers;
 import nourl.mythicmetalsdecorations.blocks.chest.MythicChestBlock;
 import nourl.mythicmetalsdecorations.blocks.chest.MythicChestBlockEntityRenderer;
 import nourl.mythicmetalsdecorations.blocks.chest.MythicChests;
+import nourl.mythicmetalsdecorations.screen.MythicChestScreen;
 import nourl.mythicmetalsdecorations.utils.RegHelper;
 
 public class MythicMetalsDecorationsClient implements ClientModInitializer {

@@ -1,8 +1,9 @@
-package nourl.mythicmetalsdecorations.client;
+package nourl.mythicmetalsdecorations.compat;
 
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.screen.ExclusionZones;
+import nourl.mythicmetalsdecorations.screen.MythicChestScreen;
 
 import java.util.ArrayList;
 

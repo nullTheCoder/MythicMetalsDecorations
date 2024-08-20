@@ -1,8 +1,9 @@
-package nourl.mythicmetalsdecorations.client;
+package nourl.mythicmetalsdecorations.compat;
 
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
 import dev.emi.emi.api.widget.Bounds;
+import nourl.mythicmetalsdecorations.screen.MythicChestScreen;
 
 public class MythicMetalsDecorationsEmiPlugin implements EmiPlugin {
     @Override

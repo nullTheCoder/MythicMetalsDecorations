@@ -12,6 +12,7 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.registry.Registries;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import nourl.mythicmetalsdecorations.MythicDecorations;
 import nourl.mythicmetalsdecorations.MythicMetalsDecorations;
 import nourl.mythicmetalsdecorations.blocks.chest.MythicChestBlock;
 import nourl.mythicmetalsdecorations.blocks.chest.MythicChests;

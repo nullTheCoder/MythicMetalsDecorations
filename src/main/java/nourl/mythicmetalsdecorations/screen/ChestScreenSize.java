@@ -1,4 +1,4 @@
-package nourl.mythicmetalsdecorations.utils;
+package nourl.mythicmetalsdecorations.screen;
 
 import net.minecraft.util.math.MathHelper;
 

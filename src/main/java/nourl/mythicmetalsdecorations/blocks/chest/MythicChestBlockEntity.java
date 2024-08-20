@@ -19,7 +19,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import nourl.mythicmetalsdecorations.MythicChestScreenHandler;
+import nourl.mythicmetalsdecorations.screen.MythicChestScreenHandler;
 public class MythicChestBlockEntity extends ChestBlockEntity implements LidOpenable {
     private final int size;
     private final String name;
