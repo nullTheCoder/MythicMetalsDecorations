@@ -24,16 +24,16 @@ public class MythicDecorationsArmorMaterials {
         ArmorItem.Type.LEGGINGS, 4,
         ArmorItem.Type.BOOTS, 2), 7, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, () -> {
         return Ingredient.ofItems(MythicItems.MANGANESE.getIngot());
-    }, List.of(layer("manganese")), 0.0f, 0.0f);
+    }, List.of(layer("manganese_crown")), 0.0f, 0.0f);
     public static final ArmorMaterial PLATINUM = new ArmorMaterial(Map.of(
         ArmorItem.Type.HELMET, 2,
         ArmorItem.Type.CHESTPLATE, 6,
         ArmorItem.Type.LEGGINGS, 5,
     ArmorItem.Type.BOOTS, 2), 13, SoundEvents.ITEM_ARMOR_EQUIP_GOLD, () -> {
         return Ingredient.ofItems(MythicItems.PLATINUM.getIngot());
-    }, List.of(layer("platinum")), 0.0f, 0.0f);
+    }, List.of(layer("platinum_crown")), 0.0f, 0.0f);
 
-    private static ArmorMaterial.Layer layer(String name) {
+    static ArmorMaterial.Layer layer(String name) {
         return new ArmorMaterial.Layer(RegHelper.id(name));
     }
 }
