@@ -1,9 +1,6 @@
 package nourl.mythicmetalsdecorations.item;
 
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.sound.SoundEvent;
 import nourl.mythicmetals.armor.MythicArmorMaterials;
 
 public class MythicDecorationsCrownMaterials {

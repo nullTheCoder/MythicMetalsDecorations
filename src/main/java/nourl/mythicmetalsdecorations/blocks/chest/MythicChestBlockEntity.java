@@ -7,7 +7,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.*;
@@ -80,7 +79,7 @@ public class MythicChestBlockEntity extends ChestBlockEntity implements LidOpena
         return name;
     }
 
-    public static void clientTick(World world, BlockPos pos, BlockState state, MythicChestBlockEntity blockEntity) {
+    public static void clientTick(World ignored, BlockPos ignored2, BlockState ignored3, MythicChestBlockEntity blockEntity) {
         blockEntity.lidAnimator.step();
     }
 
