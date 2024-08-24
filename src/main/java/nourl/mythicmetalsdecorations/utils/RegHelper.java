@@ -1,7 +1,6 @@
 package nourl.mythicmetalsdecorations.utils;
 
 import io.wispforest.owo.itemgroup.OwoItemGroup;
-import io.wispforest.owo.itemgroup.OwoItemSettings;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -25,7 +24,7 @@ import nourl.mythicmetalsdecorations.MythicMetalsDecorations;
 public class RegHelper {
 
     public static Identifier id(String path) {
-        return new Identifier(MythicMetalsDecorations.MOD_ID, path);
+        return Identifier.of(MythicMetalsDecorations.MOD_ID, path);
     }
 
     public static void item(String path, Item item) {
@@ -35,13 +34,13 @@ public class RegHelper {
 
     public static void chest(String path, Block block, OwoItemGroup group) {
         Registry.register(Registries.BLOCK, id(path), block);
-        Registry.register(Registries.ITEM, id(path), new BlockItem(block, new OwoItemSettings().group(group).tab(1)));
+        Registry.register(Registries.ITEM, id(path), new BlockItem(block, new Item.Settings().group(group).tab(1)));
     }
 
     public static void chest(String path, Block block, boolean fireproof, OwoItemGroup group) {
         if (fireproof) {
             Registry.register(Registries.BLOCK, id(path), block);
-            Registry.register(Registries.ITEM, id(path), new BlockItem(block, new OwoItemSettings().group(group).tab(1).fireproof()));
+            Registry.register(Registries.ITEM, id(path), new BlockItem(block, new Item.Settings().group(group).tab(1).fireproof()));
         } else {
             chest(path, block, group);
         }
@@ -49,13 +48,13 @@ public class RegHelper {
 
     public static void chain(String path, Block block) {
         Registry.register(Registries.BLOCK, id(path), block);
-        Registry.register(Registries.ITEM, id(path), new BlockItem(block, new OwoItemSettings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(0)));
+        Registry.register(Registries.ITEM, id(path), new BlockItem(block, new Item.Settings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(0)));
     }
 
     public static void chain(String path, Block block, boolean fireproof) {
         if (fireproof) {
             Registry.register(Registries.BLOCK, id(path), block);
-            Registry.register(Registries.ITEM, id(path), new BlockItem(block, new OwoItemSettings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(0).fireproof()));
+            Registry.register(Registries.ITEM, id(path), new BlockItem(block, new Item.Settings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(0).fireproof()));
         }
         else chain(path, block);
     }
@@ -83,6 +82,6 @@ public class RegHelper {
 
     public static void block(String path, Block block) {
         Registry.register(Registries.BLOCK, id(path), block);
-        Registry.register(Registries.ITEM, id(path), new BlockItem(block, new OwoItemSettings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(2)));
+        Registry.register(Registries.ITEM, id(path), new BlockItem(block, new Item.Settings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(2)));
     }
 }

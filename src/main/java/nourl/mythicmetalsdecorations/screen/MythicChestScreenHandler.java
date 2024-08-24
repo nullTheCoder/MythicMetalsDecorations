@@ -7,7 +7,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandler;
 import nourl.mythicmetalsdecorations.MythicMetalsDecorations;
 
@@ -16,8 +15,8 @@ public class MythicChestScreenHandler extends ScreenHandler {
     private final Inventory chestInventory;
     private final int inventorySize;
 
-    public MythicChestScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf data) {
-        this(syncId, playerInventory, new SimpleInventory(data.readInt()));
+    public MythicChestScreenHandler(int syncId, PlayerInventory playerInventory, int size) {
+        this(syncId, playerInventory, new SimpleInventory(size));
     }
 
     public MythicChestScreenHandler(int syncId, PlayerInventory playerInventory, Inventory chestInventory) {

@@ -16,8 +16,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class HopperBlockEntityMixin {
 
     // Ignores MythicChestBlocks when dealing with hoppers - makes them by default use Transfer API
-    @Inject(method = "getInventoryAt(Lnet/minecraft/world/World;DDD)Lnet/minecraft/inventory/Inventory;", at = @At("HEAD"), cancellable = true)
-    private static void mythicmetalsdeco$hopperIgnoreMythicChest(World world, double x, double y, double z, CallbackInfoReturnable<Inventory> cir) {
+    @Inject(method = "getInventoryAt(Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;DDD)Lnet/minecraft/inventory/Inventory;", at = @At("HEAD"), cancellable = true)
+    private static void mythicmetalsdeco$hopperIgnoreMythicChest(World world, BlockPos pos, BlockState state, double x, double y, double z, CallbackInfoReturnable<Inventory> cir) {
         BlockPos blockPos = BlockPos.ofFloored(x, y, z);
         BlockState blockState = world.getBlockState(blockPos);
         Block block = blockState.getBlock();

@@ -2,14 +2,11 @@ package nourl.mythicmetalsdecorations.blocks;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
-import io.wispforest.owo.itemgroup.OwoItemSettings;
 import io.wispforest.owo.util.TagInjector;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.ChainBlock;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import nourl.mythicmetalsdecorations.MythicDecorations;
@@ -18,7 +15,6 @@ import nourl.mythicmetalsdecorations.blocks.chest.MythicChestBlock;
 import nourl.mythicmetalsdecorations.blocks.chest.MythicChests;
 import nourl.mythicmetalsdecorations.item.RegalSet;
 import nourl.mythicmetalsdecorations.utils.RegHelper;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -139,10 +135,10 @@ public class MythicDecorationSet {
         private float currentHardness = -1;
         private float currentResistance = -1;
         private final Multimap<Block, Identifier> miningLevels = HashMultimap.create();
-        private final Consumer<FabricBlockSettings> settingsProcessor = fabricBlockSettings -> {
+        private final Consumer<AbstractBlock.Settings> settingsProcessor = fabricBlockSettings -> {
         };
 
-        private final Identifier PICKAXE = new Identifier("mineable/pickaxe");
+        private final Identifier PICKAXE = Identifier.of("mineable/pickaxe");
         private RegalSet regalSet = null;
         private ArmorItem crown = null;
 
@@ -178,8 +174,8 @@ public class MythicDecorationSet {
          * @param resistance Determines blast resistance of a block.
          * @param sounds     Determines the sounds that blocks play when interacted with.
          */
-        private static FabricBlockSettings blockSettings(float hardness, float resistance, BlockSoundGroup sounds) {
-            return FabricBlockSettings.create()
+        private static AbstractBlock.Settings blockSettings(float hardness, float resistance, BlockSoundGroup sounds) {
+            return AbstractBlock.Settings.create()
                     .strength(hardness, resistance)
                     .sounds(sounds)
                     .requiresTool();
@@ -291,11 +287,11 @@ public class MythicDecorationSet {
          * @param fireproof Whether the crown is fireproof
          * @see Builder
          */
-        public Builder createCrown(ArmorMaterial material, boolean fireproof) {
+        public Builder createCrown(RegistryEntry<ArmorMaterial> material, boolean fireproof) {
             if (fireproof) {
-                this.crown = new ArmorItem(material, ArmorItem.Type.HELMET, new OwoItemSettings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(2).fireproof());
+                this.crown = new ArmorItem(material, ArmorItem.Type.HELMET, new Item.Settings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(2).fireproof());
             } else {
-                this.crown = new ArmorItem(material, ArmorItem.Type.HELMET, new OwoItemSettings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(2));
+                this.crown = new ArmorItem(material, ArmorItem.Type.HELMET, new Item.Settings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(2));
             }
             return this;
         }
@@ -304,12 +300,12 @@ public class MythicDecorationSet {
          * Creates a custom crown item, which is just a fancy looking helmet
          *
          * @param material          The Armor Material used for the crown
-         * @param settingsProcessor A consumer that accepts customized {@link OwoItemSettings}, which can be used
+         * @param settingsProcessor A consumer that accepts customized {@link Item.Settings}, which can be used
          *                          for configuring items further
          * @see Builder
          */
-        public Builder createCrown(ArmorMaterial material, Consumer<OwoItemSettings> settingsProcessor) {
-            OwoItemSettings settings = new OwoItemSettings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(2);
+        public Builder createCrown(RegistryEntry<ArmorMaterial> material, Consumer<Item.Settings> settingsProcessor) {
+            var settings = new Item.Settings().group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(2);
             settingsProcessor.accept(settings);
             this.crown = new ArmorItem(material, ArmorItem.Type.HELMET, settings);
             return this;

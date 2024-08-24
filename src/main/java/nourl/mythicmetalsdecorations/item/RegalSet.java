@@ -1,14 +1,11 @@
 package nourl.mythicmetalsdecorations.item;
 
-import io.wispforest.owo.itemgroup.OwoItemSettings;
-import net.minecraft.item.ArmorItem;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Item;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.entry.RegistryEntry;
 import nourl.mythicmetalsdecorations.MythicMetalsDecorations;
 import nourl.mythicmetalsdecorations.utils.RegHelper;
-
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -34,7 +31,7 @@ public class RegalSet {
     }
 
     public ArmorItem baseArmorItem(ArmorMaterial material, ArmorItem.Type type, Consumer<Item.Settings> settingsProcessor) {
-        OwoItemSettings settings = (new OwoItemSettings()).group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(2);
+        Item.Settings settings = (new Item.Settings()).group(MythicMetalsDecorations.MYTHICMETALS_DECOR).tab(2);
         settingsProcessor.accept(settings);
         return this.makeItem(material, type, settings);
     }
@@ -47,7 +44,7 @@ public class RegalSet {
     }
 
     protected ArmorItem makeItem(ArmorMaterial material, ArmorItem.Type type, Item.Settings settings) {
-        return new ArmorItem(material, type, settings);
+        return new ArmorItem(RegistryEntry.of(material), type, settings);
     }
 
     public List<Item> getArmorSet() {

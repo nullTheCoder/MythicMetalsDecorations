@@ -1,25 +1,21 @@
 package nourl.mythicmetalsdecorations.blocks.chest;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.block.entity.ChestLidAnimator;
-import net.minecraft.block.entity.LidOpenable;
-import net.minecraft.block.entity.ViewerCountManager;
+import net.minecraft.block.entity.*;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.ContainerLock;
-import net.minecraft.inventory.DoubleInventory;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.sound.*;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nourl.mythicmetalsdecorations.screen.MythicChestScreenHandler;
+
 public class MythicChestBlockEntity extends ChestBlockEntity implements LidOpenable {
     private final int size;
     private final String name;
@@ -62,17 +58,17 @@ public class MythicChestBlockEntity extends ChestBlockEntity implements LidOpena
     }
 
     @Override
-    protected DefaultedList<ItemStack> method_11282() {
-        return inventory;
-    }
-
-    public DefaultedList<ItemStack> getMythicChestInventory() {
+    protected DefaultedList<ItemStack> getHeldStacks() {
         return inventory;
     }
 
     @Override
-    protected void setInvStackList(DefaultedList<ItemStack> list) {
-        inventory = list;
+    protected void setHeldStacks(DefaultedList<ItemStack> inventory) {
+        this.inventory = inventory;
+    }
+
+    public DefaultedList<ItemStack> getMythicChestInventory() {
+        return inventory;
     }
 
     @Override
@@ -113,51 +109,21 @@ public class MythicChestBlockEntity extends ChestBlockEntity implements LidOpena
     }
 
     @Override
-    public void readNbt(NbtCompound nbt) {
+    public void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup lookup) {
         this.lock = ContainerLock.fromNbt(nbt);
-
-        if (nbt.contains("CustomName", NbtElement.STRING_TYPE)) {
-            this.setCustomName(Text.Serialization.fromJson(nbt.getString("CustomName")));
-        }
 
         if (!this.readLootTable(nbt)) {
             this.inventory = DefaultedList.ofSize(this.size(), ItemStack.EMPTY);
-            NbtList nbtList = nbt.getList("Items", 10);
-
-            for (int i = 0; i < nbtList.size(); ++i) {
-                NbtCompound nbtCompound = nbtList.getCompound(i);
-                int j = nbtCompound.getShort("Slot") & Short.MAX_VALUE;
-                if (j < this.inventory.size()) {
-                    this.inventory.set(j, ItemStack.fromNbt(nbtCompound));
-                }
-            }
+            Inventories.readNbt(nbt, this.inventory, lookup);
         }
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt) {
+    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup lookup) {
         this.lock.writeNbt(nbt);
 
-        if (this.hasCustomName()) {
-            nbt.putString("CustomName", Text.Serialization.toJsonString(this.getCustomName()));
-        }
-
         if (!this.readLootTable(nbt)) {
-            NbtList nbtList = new NbtList();
-
-            for (int i = 0; i < this.inventory.size(); i++) {
-                ItemStack itemStack = this.inventory.get(i);
-                if (!itemStack.isEmpty()) {
-                    NbtCompound nbtCompound = new NbtCompound();
-                    nbtCompound.putShort("Slot", (short) i);
-                    itemStack.writeNbt(nbtCompound);
-                    nbtList.add(nbtCompound);
-                }
-            }
-
-            if (!nbtList.isEmpty()) {
-                nbt.put("Items", nbtList);
-            }
+            Inventories.writeNbt(nbt, this.inventory, lookup);
         }
 
     }
@@ -173,6 +139,11 @@ public class MythicChestBlockEntity extends ChestBlockEntity implements LidOpena
         if (!this.removed) {
             this.stateManager.updateViewerCount(this.getWorld(), this.getPos(), this.getCachedState());
         }
+    }
+
+    @Override
+    protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
+        return new MythicChestScreenHandler(syncId, playerInventory, this.size);
     }
 
     @Override

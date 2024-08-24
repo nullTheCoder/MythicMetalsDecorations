@@ -1,16 +1,15 @@
 package nourl.mythicmetalsdecorations;
 
+import io.wispforest.endec.Endec;
 import io.wispforest.owo.itemgroup.Icon;
 import io.wispforest.owo.itemgroup.OwoItemGroup;
-import io.wispforest.owo.itemgroup.OwoItemSettings;
 import io.wispforest.owo.itemgroup.gui.ItemGroupButton;
 import io.wispforest.owo.registration.reflect.FieldRegistrationHandler;
+import io.wispforest.owo.serialization.CodecUtils;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.*;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.text.Style;
@@ -39,9 +38,9 @@ public class MythicMetalsDecorations implements ModInitializer {
                 group.addButton(ItemGroupButton.discord(group, "https://discord.gg/69cKvQWScC"));
             }).build();
 
-    public static final ScreenHandlerType<MythicChestScreenHandler> MYTHIC_CHEST_SCREEN_HANDLER_TYPE = new ExtendedScreenHandlerType<>(MythicChestScreenHandler::new);
+    public static final ScreenHandlerType<MythicChestScreenHandler> MYTHIC_CHEST_SCREEN_HANDLER_TYPE = new ExtendedScreenHandlerType<>(MythicChestScreenHandler::new, CodecUtils.toPacketCodec(Endec.INT));
 
-    public static final Item CROWN_CHISEL = new Item(new OwoItemSettings().group(MYTHICMETALS_DECOR).tab(2));
+    public static final Item CROWN_CHISEL = new Item(new Item.Settings().group(MYTHICMETALS_DECOR).tab(2));
 
     @Override
     public void onInitialize() {
@@ -51,10 +50,7 @@ public class MythicMetalsDecorations implements ModInitializer {
         MYTHICMETALS_DECOR.initialize();
 
         // Integrate with base MM
-        Abilities.AQUA_AFFINITY.addItem(MythicDecorations.AQUARIUM.getCrown(), Style.EMPTY.withColor(Formatting.AQUA));
         Abilities.BLAST_PADDING.addItem(MythicDecorations.BANGLUM.getCrown(), Style.EMPTY.withColor(Formatting.GOLD));
-        Abilities.CARMOT_SHIELD.addItem(MythicDecorations.CARMOT.getCrown(), Style.EMPTY.withColor(15089267));
-        Abilities.MENDING.addItem(MythicDecorations.PROMETHEUM.getCrown(), Style.EMPTY.withColor(3828310));
         Abilities.FIRE_PROTECTION.addItem(MythicDecorations.PALLADIUM.getCrown(), Style.EMPTY.withColor(14644003));
 
         Registry.register(Registries.SCREEN_HANDLER, RegHelper.id("mythic_chest"), MYTHIC_CHEST_SCREEN_HANDLER_TYPE);

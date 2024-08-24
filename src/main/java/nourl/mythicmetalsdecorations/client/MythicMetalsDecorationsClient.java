@@ -32,13 +32,6 @@ public class MythicMetalsDecorationsClient implements ClientModInitializer {
 
         createChestModelsAndSprites();
 
-        /*
-        ClientSpriteRegistryCallback.event(SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE).register((atlasTexture, registry) -> {
-            ChestTextureLayers.modelList.forEach(entityModelLayer -> registry.register(entityModelLayer.getId()));
-            ChestTextureLayers.chestSpriteMap.forEach((s, spriteIdentifier) -> registry.register(spriteIdentifier.getTextureId()));
-        });
-        */
-
         // Register the chest models
         ChestTextureLayers.init((loc, def) -> EntityModelLayerRegistry.registerModelLayer(loc, () -> def));
 
@@ -97,7 +90,7 @@ public class MythicMetalsDecorationsClient implements ClientModInitializer {
         });
 
         // Init chest tooltips
-        ItemTooltipCallback.EVENT.register((stack, context, lines) -> {
+        ItemTooltipCallback.EVENT.register((stack, context, type, lines) -> {
             if (stack.getItem() != null) {
                 if (stack.getItem() instanceof BlockItem && ((BlockItem) stack.getItem()).getBlock() instanceof MythicChestBlock chest) {
                     lines.add(1, chest.getChestTooltip());
